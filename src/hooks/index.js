@@ -95,7 +95,7 @@ const useForm = () => {
             setError(newObj)
           }
           break;
-          
+         
         default:
           const newObj = omit(error, '')
           setError(newObj)
@@ -133,21 +133,23 @@ const useForm = () => {
      
         if(
            !new RegExp(/^([A-Za-z0-9_\-.])+@([redberry])+.(ge)$/).test(value.email)
-           ) {
+          ){
              
                err.email= "უნდა მთავრდებოდეს @redberry.ge-ითl"
-             
-           }
+            }
      
         if(
-          
-          !new RegExp(/^(\+?995)?(79\d{7}|5\d{8})$/
-         
-          ).test(value.phone)
+          !new RegExp(/^(\+?995)?(79\d{7}|5\d{8})$/).test(value.phone)
           ){
           
             err.phone="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
           
+        }
+        if(!value.team_id) {
+          err.team_id ="choos one"
+        }
+        if(!value.position_id) {
+          err.position_id ="choos პოსიტიონ"
         }
         return err
         }
@@ -173,11 +175,11 @@ const useForm = () => {
     
     }
  
-
+    console.log("value",value)
   
     const validateNavButt = (name) => {
         
-         console.log(inputValue.team_id)
+         
         if(name === 'forward') {
           
          if(inputValue.first_name.length > 2 
@@ -204,7 +206,7 @@ const useForm = () => {
       
     }
 
-    console.log(inputValue)
+    console.log("input", inputValue.team_id)
 
 
     const handleNavigation = (e) => {
@@ -222,7 +224,7 @@ const useForm = () => {
       
     }
 console.log(error)
-Object.keys(error).map(i => console.log(error[i]))
+
 
   
 

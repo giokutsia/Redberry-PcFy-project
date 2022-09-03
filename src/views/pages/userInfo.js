@@ -1,9 +1,10 @@
 import React from 'react';
 import DataServices from '../../services/axiosDataFetch';
 import {useState, useEffect} from "react";
+import { Link } from 'react-router-dom';
 
 
-const UserInfo = ({inputValue, handleChange, error, setInputValue, handleNavigation}) => {
+const UserInfo = ({inputValue, handleChange, error, setInputValue, handleNavigation, value}) => {
     
     const [team, setTeam] = useState([])
     const [position, setPosition] = useState([])
@@ -59,26 +60,24 @@ const filteredPos = position.filter((position) => position.team_id === Number(in
             <div className='w-[1226px] h-[953px] rounded-[18px] bg-white'>
                 <form className='w-full h-full' >
                     <div className='flex flex-wrap justify-evenly w-full min-h-[139] m-auto  '>
-                        <div className='mt-[30px]' id='სახელი'>
-                            <label className='font-medium text-[18px] font-sans ' >სახელი</label>
+                        <div className='mt-[30px] text-red-500' id='სახელი'>
+                            <label className= {`font-medium text-[18px] font-sans ${error.first_name ? "text-errred" : ""}`} >სახელი</label>
                             <input value={inputValue.first_name}  onChange={handleChange}
-                                className='block w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 '  name='first_name'  />
-                            {error.first_name ? <p className="text-red-500 text-xs">{error.first_name} </p> : inputValue.first_name==='' ? <p className="text-red-500 text-xs">მინიმუმ 2 სიმბლოლო, ქართული ასოები</p> : ''}
+                                className={`block w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 ${error.first_name ? "border-errred" : ""}` } name='first_name'  />
+                            {error.first_name ? <p className="text-errred text-xs">{error.first_name} </p> : inputValue.first_name==='' ? <p className="text-red-500 text-xs">მინიმუმ 2 სიმბლოლო, ქართული ასოები</p> : ''}
                         </div>
                         <div className='block mt-[30px]' id='გვარი'>
                                 
-                            <label className='font-medium text-[18px] font-sans font-["Helvetica Neue"]'>გვარი</label>
+                            <label className={`font-medium text-[18px] font-sans ${error.last_name ? "text-errred" : ""}`} >გვარი</label>
                             <input value={inputValue.last_name} onChange={handleChange}
-                                className='block min-w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 ' name='last_name'  />
-                            {error.last_name ? <p className="text-red-500 text-xs">{error.last_name} </p> : inputValue.last_name==='' ? <p className="text-red-500 text-xs">მინიმუმ 2 სიმბლოლო, ქართული ასოები</p> : ''}
+                                className={`block w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 ${error.last_name ? "border-errred" : ""}` } name='last_name'  />
+                            {error.last_name ? <p className="text-errred text-xs">{error.last_name} </p> : inputValue.last_name==='' ? <p className="text-red-500 text-xs">მინიმუმ 2 სიმბლოლო, ქართული ასოები</p> : ''}
                         </div>
                     </div>
                         
                         <div className='grid grid-cols-1 gap-[53px] mt-[53px]' >
-                            <select className='w-[878px] h-[60px] m-auto rounded-[8px] bg-easygray' name='team_id' value={inputValue.team_id || "თიმი"} onChange={handleChange}>
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-[14.29px] h-[8.23px]">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg> */}
+                            <select className={`w-[878px] h-[60px] m-auto rounded-[8px]  bg-easygray ${error.team_id ? "border-2 border-errred" : ""}`} name='team_id' value={inputValue.team_id || "თიმი"} onChange={handleChange}>
+                         
                                 <option className='bg-white' disabled>თიმი</option>
                                 {
                                     team && team.map(i => 
@@ -87,8 +86,9 @@ const filteredPos = position.filter((position) => position.team_id === Number(in
                                         )
                                     }
                             </select>
+                            
                         
-                            <select className='w-[878px] h-[60px] m-auto rounded-[8px] bg-easygray' value={inputValue.position_id || "პოზიცია"}   name='position_id' onChange={handleChange}>
+                            <select className={`w-[878px] h-[60px] m-auto rounded-[8px]  bg-easygray ${error.position_id ? "border-2 border-errred" : ""}`} value={inputValue.position_id || "პოზიცია"}   name='position_id' onChange={handleChange}>
                                 <option className='bg-white' disabled>პოზიცია</option>
                             {   
                                 filteredPos &&
@@ -102,22 +102,24 @@ const filteredPos = position.filter((position) => position.team_id === Number(in
                                  <div className='mt-[30px] ' id='email'>
                                     <label className='' >მეილი</label>
                                     <input value={inputValue.email}  onChange={handleChange}
-                                        className='block min-w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 '  name='email'  />
+                                        className={`block w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 ${error.email ? "border-errred" : ""}` }  name='email'  />
                                     {error.email ? <p className="text-red-500 text-xs"> {error.email} </p> : inputValue.email==='' ? <p className="text-red-500 text-xs">უნდა მთავრდებოდეს @redberry.ge-ით</p> : ''}
                                 </div>
                                 <div className='block mt-[30px]' id='phone'>
                                 
                                     <label className='block'>ტელეფონის ნომერი</label>
                                     <input value={inputValue.phone} onChange={handleChange}
-                                        className='block w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 ' name='phone'  />
+                                        className={`block w-full bg-gray-200 text-gray-700 border-[1.8px] border-lightblue rounded py-3 px-4 mb-3 ${error.phone ? "border-errred" : ""}` } name='phone'  />
                                     {error.phone ? <p className="text-red-500 text-xs">{error.phone} </p> : inputValue.phone==='' ? <p className="text-red-500 text-xs">უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p> : ''}
                                 </div>
                             </div>
                         </div>
                         <div className='grid justify-end  w-[878px] m-auto py-7 px-5  mt-10'>
 
-                             <button name='forward' type='submit' onClick={handleNavigation}
+                           
+                            <button name='forward' type='submit' onClick={handleNavigation}
                              className='bg-solidblue w-[176px] h-[60px] rounded-[8px] hover:solidblue text-white font-bold py-2 px-4 '>შემდეგი</button>
+                             
                         
                         </div> 
                 </form>

@@ -14,7 +14,9 @@ module.exports = {
       'white': '#ffffff',
       'solidblue': "#62A1EB",
       'easygray': "#F6F6F6",
-      'lightblue': '#8AC0E2'
+      'lightblue': '#8AC0E2',
+      'errred': ' #E52F2F'
+      
     },
     fontFamily: {
       'sans': ['Helvetica', 'Arial', 'sans-serif'],
