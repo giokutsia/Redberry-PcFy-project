@@ -15,8 +15,8 @@ const StartingPage = () => {
               </div>
 
           
-            <Link  to='/forms' className='m-auto font-sans font-["Helvetica Neue"] leading-[100%] desktop:w-[358px] tablet:w-[387px] h-[60px] bg-solidblue hover:bg-blue-700 text-white text-[20px]  py-[18px] px-4 rounded-[8px] text-center ' > <spna>ჩანაწერის დამატება</spna></Link>
-            <Link  to='/forms' className='m-auto font-sans font-["Helvetica Neue"] leading-[100%] desktop:w-[358px] tablet:w-[387px] h-[60px] bg-solidblue hover:bg-blue-700 text-white text-[20px]  py-[18px] px-4 rounded-[8px] text-center ' > <spna>ჩანაწერის სია</spna></Link>
+            <Link  to='/forms' className='m-auto font-sans font-["Helvetica Neue"] leading-[100%] desktop:w-[358px] tablet:w-[387px] h-[60px] bg-solidblue hover:bg-blue-700 text-white text-[20px]  py-[18px] px-4 rounded-[8px] text-center ' > <span>ჩანაწერის დამატება</span></Link>
+            <Link  to='/forms' className='m-auto font-sans font-["Helvetica Neue"] leading-[100%] desktop:w-[358px] tablet:w-[387px] h-[60px] bg-solidblue hover:bg-blue-700 text-white text-[20px]  py-[18px] px-4 rounded-[8px] text-center ' > <span>ჩანაწერის სია</span></Link>
         </div>
     );
 };
